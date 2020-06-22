@@ -22,7 +22,7 @@ BH = 2.75;
 TH = 4.5+H+BH+t;
 THD = 4.5+4.5+2.5;
 WD = (W2-W)/2;
-gap3 = 0.375;
+gap3 = 0.75;
 
 
 translate([0, 0, 0])
@@ -31,22 +31,26 @@ translate([0, 0, 0])
     {
         union()
         {
-            translate([-TH/2-gap3, -R2-t-2, -R2-WD]) cube([TH+gap3*2, R+t+2-gap1, W2]);
-            translate([R2-W/2-R2-WD, -TH/2, -R-((W2-W)/2)-R2+gap1]) cube([W2, TH, R-gap1]);
-            translate([R2-W/2-R2-WD, -TH/2, -((W2-W)/2)-R2+gap1]) cube([W2, TH, t]);
+            translate([-R2-WD+gap1, -R2-WD+gap1, -R2]) cube([TH+gap3-gap2, W2-gap2, R-gap1]);
+            translate([-R2-WD, -R2-WD, -R-R2+gap1]) cube([W2, TH+gap3, R-gap1]);
         }
-        translate([-TH/2-gap3, 0, 0]) rotate([180, 0, 0]) SG92R();
-        translate([TH/2-BH-t-gap3, 0, 0]) rotate([0, 0, 0]) BEARING4x7x2p5();
-        translate([TH/2-BH-t-gap3, 0, 0]) rotate([0 ,90, 0]) cylinder(BH+t+gap1+gap3*2, d=4.5, $fn=100);
-        translate([-TH/2-gap1-gap3, -gap1, -R2-(W2-W)/2-gap1]) cube([THD+gap2, R2+gap2, W2+gap2]);
-        translate([2.5-gap3, -3, -R2-WD]) cube([5, R*2, WD]);
-        translate([-TH/2+4.5+4.5-gap3, -R2, -R2-WD]) cube([2.5, R*2, WD]);
+        #translate([-R2-WD, 0, 0]) rotate([90, 0, 0]) SG92R();
+        translate([-R2-WD+4.5+H, 0, 0]) rotate([0, 0, 0]) BEARING4x7x2p5();
+        translate([-R2-WD+4.5+H, 0, 0]) rotate([0 ,90, 0]) cylinder(BH+t+gap3+gap1, d=4.5, $fn=100);
+        translate([-R2-WD-gap1, -R2-WD-gap1, 0-gap1]) cube([THD+gap2, W2+gap2, R2+gap2]);
+        translate([-R2-WD+18, -R2-WD, 0-3]) cube([5, WD+gap2, 10]);
+        //translate([-R2-gap3/2+0.125, W-R2, -R2]) cube([H, 0.5, 0.5]);
+        //translate([-R2-0.5, -R2+gap3/2+0.125+0.5, -R2]) cube([0.5, H, 0.5]);
 
-        #translate([R2-W/2, -TH/2, -R-((W2-W)/2)]) rotate([-90, 0, 90]) SG92R();
-        translate([R2-W/2, TH/2-BH-t, -R-((W2-W)/2)]) rotate([0, 0, 90]) BEARING4x7x2p5();
-        translate([R2-W/2, TH/2-BH-t, -R-((W2-W)/2)]) rotate([0 ,90, 90]) cylinder(BH+t+gap1, d=4.5, $fn=100);
-        translate([R2-W/2-R2-WD-gap1, -TH/2-gap1, -R-((W2-W)/2)-R2-gap1]) cube([W2+gap2, THD+gap2, R2]);
-        translate([-W/2-5, 3, -R-((W2-W)/2)-7]) cube([5, 4, 10]);
+        #translate([0, -R2-WD, -R]) rotate([-90, 0, 90]) SG92R();
+        translate([0, -R2-WD+4.5+H, -R]) rotate([0, 0, 90]) BEARING4x7x2p5();
+        translate([0, -R2-WD+4.5+H, -R]) rotate([0 ,90, 90]) cylinder(BH+t+gap3+gap1, d=4.5, $fn=100);
+        translate([-R2-WD-gap1, -R2-WD-gap1, -R-R2-gap1]) cube([W2+gap2, THD+gap2, R2]);
+        translate([-R2-WD-gap1, -R2-WD+18, -R-10+3]) cube([WD+gap2, 5, 10]);
+        //translate([W-R2, -R2-gap3/2+0.125, -R2-0.5]) cube([0.5, H, 0.5]);
+        //translate([-R2+gap3/2+0.125+0.5, -R2-0.5, -R2-0.5]) cube([H, 0.5, 0.5]);
+        
+        translate([-R2-WD-gap1, -R2-WD-gap1, -R2-R-gap1]) cube([R2+WD+gap3/2+gap2, R2+WD+gap3/2+gap2, R*2]);
     }
 }
 
